@@ -12,10 +12,6 @@ import Link from "next/link";
 export function TradeCard({ trade }: { trade: Trade }) {
   const result = Number(trade.result);
   const isProfit = result >= 0;
-  const profitPercentage = (
-    (result / (trade.entry * trade.lot_size)) *
-    100
-  ).toFixed(2);
 
   return (
     <Link href={`/trades/${trade.id}`}>
@@ -79,14 +75,6 @@ export function TradeCard({ trade }: { trade: Trade }) {
                     }`}
                   >
                     ${Math.abs(result).toFixed(2)}
-                  </p>
-                  <p
-                    className={`text-sm font-semibold ${
-                      isProfit ? "text-emerald-500" : "text-red-500"
-                    }`}
-                  >
-                    {isProfit ? "+" : ""}
-                    {profitPercentage}%
                   </p>
                 </div>
               </div>

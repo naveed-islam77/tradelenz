@@ -21,7 +21,7 @@ export default function Selector({
   error,
   disabled,
 }: {
-  label: string;
+  label?: string;
   options?: string[];
   onChange?: (value: string) => void;
   value?: string;
@@ -50,7 +50,7 @@ export default function Selector({
         >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
-        <SelectContent className="!border-none">
+        <SelectContent className="!border-none max-h-[300px] overflow-y-auto">
           {options.map((option) => (
             <SelectItem key={option} value={option}>
               {option}

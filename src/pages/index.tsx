@@ -5,10 +5,18 @@ import DashboardTab from "@/components/dashboard";
 import History from "@/components/history";
 import Sidebar from "@/components/sidebar";
 import TradeForm from "@/components/trade-form";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function Dashboard() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("add-trade");
+
+  useEffect(() => {
+    if (router.query.tab) {
+      setActiveTab(router.query.tab as string);
+    }
+  }, [router.query.tab]);
 
   return (
     <div className="flex h-screen bg-background">

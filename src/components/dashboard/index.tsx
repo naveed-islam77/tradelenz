@@ -1,12 +1,16 @@
 import { useGetTradesQuery } from "@/redux/services/tradesApi";
 import { Trade } from "@/types/trade-form";
-import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { DollarSign, TrendingDown, TrendingUp, Zap } from "lucide-react";
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import DashboardHeader from "./dashboard-header";
 import { TradesGrid } from "./trades-grid";
 
 const DashboardTab = () => {
-  const { data: trades = [] } = useGetTradesQuery({});
+  const [filter, setFilter] = useState({});
+  const { data: trades = [] } = useGetTradesQuery({ filter });
+
+  console.log("filter", filter);
 
   const totalTrades = trades.length;
   const totalPnL = trades.reduce((sum: number, t: Trade) => sum + t.result, 0);
@@ -16,7 +20,6 @@ const DashboardTab = () => {
   const winRate =
     totalTrades > 0 ? ((winningTrades / totalTrades) * 100).toFixed(1) : 0;
 
-  if (trades?.length === 0) return null;
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -118,15 +121,18 @@ const DashboardTab = () => {
 
       {/* Trades Section */}
       <div>
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold text-foreground mb-1">
-            All Trades
-          </h2>
-          <p className="text-muted-foreground">
-            Click on any trade to see detailed information
-          </p>
-        </div>
-        <TradesGrid trades={trades} />
+        <DashboardHeader
+          onFilter={(field: any, value: any) => setFilter({ field, value })}
+        />
+
+        {trades?.length > 0 ? (
+          <TradesGrid trades={trades} />
+        ) : (
+          <div className="text-center py-10 text-muted-foreground flex justify-center items-center flex-col h-[40vh]">
+            <p className="text-lg font-semibold">No trades Yet</p>
+            <p className="text-sm">You have not taken any trades Yet</p>
+          </div>
+        )}
       </div>
     </div>
   );

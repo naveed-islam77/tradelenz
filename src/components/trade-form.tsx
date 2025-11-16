@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { calculatePips } from "@/helpers/trade-helpers";
-import { pairs, setups } from "@/static/trades-data";
+import { emotions, pairs, setups, tradingSessions } from "@/static/trades-data";
 import { Trade } from "@/types/trade-form";
 import { Loader2, X } from "lucide-react";
 import { KeyboardEvent, useState } from "react";
@@ -8,14 +8,16 @@ import { Input } from "./ui/input";
 import Selector from "./ui/selector";
 import { useAddTradeMutation } from "@/redux/services/tradesApi";
 import toast from "react-hot-toast";
+import { DateTimePicker } from "./ui/DateTimePicker";
+import dayjs from "dayjs";
 
 export default function TradeForm() {
   const [confirmations, setConfirmations] = useState<string[]>([]);
   const [confirmationInput, setConfirmationInput] = useState("");
   const [addTrade, { isLoading }] = useAddTradeMutation();
   const [formData, setFormData] = useState({
-    date_open: new Date().toISOString().slice(0, 16),
-    date_close: new Date().toISOString().slice(0, 16),
+    date_open: "",
+    date_close: "",
     pair: "EURUSD",
     type: "buy" as const,
     entry: "",
@@ -52,6 +54,7 @@ export default function TradeForm() {
 
     const newTrade: Trade = {
       date_open: formData.date_open,
+      date_close: formData.date_close,
       pair: formData.pair,
       type: formData.type,
       entry: entry,
@@ -111,8 +114,6 @@ export default function TradeForm() {
     setConfirmations(confirmations.filter((c) => c !== value));
   };
 
-  console.log("formData", formData.confirmations);
-
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Date & Time Section */}
@@ -125,24 +126,32 @@ export default function TradeForm() {
             <label className="block text-sm font-medium text-foreground mb-2">
               Trade Open
             </label>
-            <input
-              type="datetime-local"
-              name="date_open"
-              value={formData.date_open}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            <DateTimePicker
+              date={
+                formData.date_open ? dayjs(formData.date_open).toDate() : null
+              }
+              setDate={(date) =>
+                setFormData({
+                  ...formData,
+                  date_open: dayjs(date).toISOString(),
+                })
+              }
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-foreground mb-2">
               Trade Close
             </label>
-            <input
-              type="datetime-local"
-              name="date_close"
-              value={formData.date_close}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            <DateTimePicker
+              date={
+                formData.date_close ? dayjs(formData.date_close).toDate() : null
+              }
+              setDate={(date) =>
+                setFormData({
+                  ...formData,
+                  date_close: dayjs(date).toISOString(),
+                })
+              }
             />
           </div>
         </div>
@@ -296,7 +305,7 @@ export default function TradeForm() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
           <div>
             <Selector
-              options={setups}
+              options={emotions}
               onChange={(value) => setFormData({ ...formData, emotion: value })}
               value={formData.emotion}
               label="Emotion"
@@ -307,7 +316,7 @@ export default function TradeForm() {
           </div>
           <div>
             <Selector
-              options={setups}
+              options={tradingSessions}
               onChange={(value) => setFormData({ ...formData, session: value })}
               value={formData.session}
               label="Session"
