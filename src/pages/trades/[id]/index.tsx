@@ -83,6 +83,16 @@ export default function TradeDetailsPage() {
                   >
                     Closed
                   </Badge>
+                  <Badge
+                    variant="outline"
+                    className={`${
+                      trade.type === "buy"
+                        ? "bg-yellow-500/10 text-yellow-500 border-yellow-500/20"
+                        : "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
+                    }`}
+                  >
+                    TimeFrame : {trade?.timeframe} min
+                  </Badge>
                 </div>
                 <p className="text-muted-foreground">
                   Trade Pair: {trade.pair}

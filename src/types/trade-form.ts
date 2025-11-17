@@ -11,6 +11,7 @@ export interface Trade {
   lot_size: number;
   result: string;
   strategy?: string;
+  timeframe?: string;
   notes?: string;
   emotion?: string;
   session?: string;
