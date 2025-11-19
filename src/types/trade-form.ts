@@ -16,6 +16,7 @@ export interface Trade {
   emotion?: string;
   session?: string;
   confirmations?: string[];
+  tradetype?: string;
 }
 
 

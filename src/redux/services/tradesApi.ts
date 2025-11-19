@@ -1,6 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { supabase } from "@/utils/supabase";
 import dayjs from "dayjs";
+import { applyFilters } from "@/helpers/filter-builder";
 
 const supabaseBaseQuery = async ({ fn }: any) => {
   try {
@@ -18,41 +19,12 @@ export const tradesApi = createApi({
   tagTypes: ["Trades"],
 
   endpoints: (builder) => ({
-   getTrades: builder.query({
+  getTrades: builder.query({
   query: ({ filter }) => ({
     fn: async () => {
       let query = supabase.from("trades").select("*");
 
-      if (filter === "today") {
-        const start = dayjs().startOf("day").toISOString();
-        const end = dayjs().endOf("day").toISOString();
-        query = query.gte("date_open", start).lte("date_open", end);
-      } else if (filter === "wins") {
-        query = query.gt("result", 0);
-      } else if (filter === "losses") {
-        query = query.lt("result", 0);
-      } else if (filter === "breakeven") {
-        query = query.eq("result", 0);
-      }
-
-
-
-      if (filter && typeof filter === "object" && filter.field && filter.value) {
-        const { field, value } = filter;
-console.log("field", field)
-        if (field === "Date") {
-          const start = dayjs(value).startOf("day").toISOString();
-          const end = dayjs(value).endOf("day").toISOString();
-          console.log("start", start)
-          query = query.gte("date_open", start).lte("date_open", end);
-        } else if (field === "Type") {
-          query = query.eq("type", value);
-        } else if (field === "Pair") {
-          query = query.eq("pair", value);
-        } else if (field === "Result") {
-          query = query.eq("result", value);
-        }
-      }
+      query = applyFilters(query, filter);
 
       return query.order("date_open", { ascending: false });
     },

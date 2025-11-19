@@ -44,3 +44,9 @@ export const tradingSessions = [
   "European Session (London)", 
   "US Session (New York)",
 ];
+
+export const tradeType = [
+  "Scalping",    
+  "Intraday", 
+  "Swing",
+];

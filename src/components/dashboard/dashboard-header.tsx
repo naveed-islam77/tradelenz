@@ -51,7 +51,7 @@ export default function DashboardHeader({ onFilter }: any) {
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold text-foreground mb-1">
-            All Trades
+            Weekly Trades
           </h2>
           <p className="text-muted-foreground">
             Click on any trade to see detailed information

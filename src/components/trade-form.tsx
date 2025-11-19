@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { calculatePips } from "@/helpers/trade-helpers";
-import { emotions, pairs, setups, tradingSessions } from "@/static/trades-data";
+import {
+  emotions,
+  pairs,
+  setups,
+  tradeType,
+  tradingSessions,
+} from "@/static/trades-data";
 import { Trade } from "@/types/trade-form";
 import { Loader2, X } from "lucide-react";
 import { KeyboardEvent, useState } from "react";
@@ -29,6 +35,7 @@ const initialValues = {
   result: "",
   session: "",
   timeframe: "",
+  tradetype: "",
 };
 
 export default function TradeForm() {
@@ -56,6 +63,7 @@ export default function TradeForm() {
         emotion: values.emotion,
         session: values.session,
         timeframe: values.timeframe,
+        tradetype: values.tradetype,
       };
 
       addTrade(newTrade)
@@ -273,6 +281,15 @@ export default function TradeForm() {
               placeholder="Enter Trade Result"
             />
           </div>
+          <Selector
+            options={tradeType}
+            onChange={(value) => formik.setFieldValue("tradetype", value)}
+            value={formik.values.tradetype}
+            label="Trade Type"
+            triggerClassName="focus-visible:ring-[0px] bg-input p-2 py-5 mt-2"
+            parentClassName="p-0"
+            placeholder="Scalping"
+          />
         </div>
       </div>
 

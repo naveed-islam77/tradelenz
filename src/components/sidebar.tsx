@@ -1,11 +1,11 @@
 "use client";
 
 import {
+  History,
+  HistoryIcon,
   LayoutDashboard,
   Plus,
-  History,
   TrendingUp,
-  Settings,
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -22,6 +22,7 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
     { id: "add-trade", label: "Add Trade", icon: Plus },
     { id: "history", label: "Today Trades", icon: History },
     { id: "analytics", label: "Analytics", icon: TrendingUp },
+    { id: "alltime-trades", label: "All Time Trades", icon: HistoryIcon },
   ];
 
   return (

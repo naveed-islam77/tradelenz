@@ -10,8 +10,6 @@ const DashboardTab = () => {
   const [filter, setFilter] = useState({});
   const { data: trades = [] } = useGetTradesQuery({ filter });
 
-  console.log("filter", filter);
-
   const totalTrades = trades.length;
   const totalPnL = trades.reduce((sum: number, t: Trade) => sum + t.result, 0);
   const winningTrades = trades.filter(
