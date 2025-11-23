@@ -17,6 +17,8 @@ import toast from "react-hot-toast";
 import { DateTimePicker } from "./ui/DateTimePicker";
 import dayjs from "dayjs";
 import { useFormik } from "formik";
+import { strategyApi, useGetStrategiesQuery } from "@/redux/services/stratergy";
+import SelectorWithLabelValue from "./ui/selector-label-value";
 
 const initialValues = {
   date_open: "",
@@ -36,12 +38,14 @@ const initialValues = {
   session: "",
   timeframe: "",
   tradetype: "",
+  strategy_id: "",
 };
 
 export default function TradeForm() {
   const [confirmations, setConfirmations] = useState<string[]>([]);
   const [confirmationInput, setConfirmationInput] = useState("");
   const [addTrade, { isLoading }] = useAddTradeMutation();
+  const { data: strategies } = useGetStrategiesQuery({});
 
   const formik = useFormik({
     initialValues,
@@ -64,6 +68,7 @@ export default function TradeForm() {
         session: values.session,
         timeframe: values.timeframe,
         tradetype: values.tradetype,
+        strategy_id: values.strategy_id,
       };
 
       addTrade(newTrade)
@@ -72,6 +77,7 @@ export default function TradeForm() {
           toast.success("Trade added successfully!");
           resetForm();
           setConfirmations([]);
+          strategyApi.util.invalidateTags(["Strategies"]);
         })
         .catch(() => toast.error("Error adding trade"));
     },
@@ -91,6 +97,10 @@ export default function TradeForm() {
   const removeConfirmation = (value: string) => {
     setConfirmations(confirmations.filter((c) => c !== value));
   };
+
+  const strategyOptions = strategies
+    ? strategies.map((s: any) => ({ label: s.name, value: s.id }))
+    : [];
 
   return (
     <form onSubmit={formik.handleSubmit} className="space-y-6">
@@ -181,7 +191,7 @@ export default function TradeForm() {
           Price Levels
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {["entry", "exit", "stop_loss", "take_profit"].map((field) => (
+          {["entry", "exit", "take_profit", "stop_loss"].map((field) => (
             <div key={field}>
               <label className="block text-sm font-medium text-foreground mb-2">
                 {field.replace("_", " ").toUpperCase()}
@@ -224,10 +234,10 @@ export default function TradeForm() {
             />
           </div>
 
-          <Selector
-            options={setups}
-            onChange={(value) => formik.setFieldValue("strategy", value)}
-            value={formik.values.strategy}
+          <SelectorWithLabelValue
+            options={strategyOptions}
+            onChange={(value) => formik.setFieldValue("strategy_id", value)}
+            value={formik.values.strategy_id}
             label="Setup / Strategy"
             triggerClassName="focus-visible:ring-[0px] bg-input p-2 py-5 mt-2"
             parentClassName="p-0"

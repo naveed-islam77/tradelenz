@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  ChartCandlestick,
   History,
   HistoryIcon,
   LayoutDashboard,
@@ -9,6 +10,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { RiStockFill } from "react-icons/ri";
+import { PiStrategyFill } from "react-icons/pi";
 
 interface SidebarProps {
   activeTab: string;
@@ -20,8 +23,10 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
   const menuItems = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
     { id: "add-trade", label: "Add Trade", icon: Plus },
-    { id: "history", label: "Today Trades", icon: History },
+    { id: "history", label: "Today Trades", icon: RiStockFill },
     { id: "analytics", label: "Analytics", icon: TrendingUp },
+    { id: "strategy", label: "Strategies", icon: PiStrategyFill },
+    { id: "progress", label: "Progress Cards", icon: ChartCandlestick },
     { id: "alltime-trades", label: "All Time Trades", icon: HistoryIcon },
   ];
 

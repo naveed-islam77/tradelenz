@@ -17,6 +17,7 @@ export interface Trade {
   session?: string;
   confirmations?: string[];
   tradetype?: string;
+  strategy_id?: string;
 }
 
 

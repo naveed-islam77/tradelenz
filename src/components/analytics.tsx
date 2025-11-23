@@ -157,19 +157,18 @@ export default function Analytics() {
           </ChartContainer>
         </div>
 
-        {/* Average Win vs Loss */}
         <div className="bg-card rounded-lg p-6 shadow-sm border border-border">
           <h3 className="text-lg font-semibold text-foreground mb-4">
-            Average Win vs Loss
+            Profit & Loss Summary
           </h3>
           <ChartContainer
             config={{
-              avgWin: {
-                label: "Avg Win",
+              totalWins: {
+                label: "Total Wins",
                 color: "hsl(var(--chart-1))",
               },
-              avgLoss: {
-                label: "Avg Loss",
+              totalLosses: {
+                label: "Total Losses",
                 color: "hsl(var(--chart-3))",
               },
             }}
@@ -177,7 +176,7 @@ export default function Analytics() {
           >
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
-                data={avgWinLossData}
+                data={pnlData}
                 margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
@@ -189,70 +188,26 @@ export default function Analytics() {
                   }
                 />
                 <Bar dataKey="value" radius={[8, 8, 0, 0]}>
-                  {avgWinLossData.map((entry, index) => (
+                  {pnlData.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={index === 0 ? colors.win : colors.loss}
+                      fill={entry.value > 0 ? colors.win : colors.loss}
                     />
                   ))}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
           </ChartContainer>
-        </div>
-      </div>
-
-      {/* P&L Summary Chart */}
-      <div className="bg-card rounded-lg p-6 shadow-sm border border-border">
-        <h3 className="text-lg font-semibold text-foreground mb-4">
-          Profit & Loss Summary
-        </h3>
-        <ChartContainer
-          config={{
-            totalWins: {
-              label: "Total Wins",
-              color: "hsl(var(--chart-1))",
-            },
-            totalLosses: {
-              label: "Total Losses",
-              color: "hsl(var(--chart-3))",
-            },
-          }}
-          className="h-[300px]"
-        >
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              data={pnlData}
-              margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+          <div className="mt-4 flex justify-between items-center pt-4 border-t border-border">
+            <p className="text-sm text-muted-foreground">Net Profit/Loss</p>
+            <p
+              className={`text-2xl font-bold ${
+                netProfit >= 0 ? "text-accent" : "text-destructive"
+              }`}
             >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip
-                content={
-                  <ChartTooltipContent className="bg-[#D6F599] text-black" />
-                }
-              />
-              <Bar dataKey="value" radius={[8, 8, 0, 0]}>
-                {pnlData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={entry.value > 0 ? colors.win : colors.loss}
-                  />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </ChartContainer>
-        <div className="mt-4 flex justify-between items-center pt-4 border-t border-border">
-          <p className="text-sm text-muted-foreground">Net Profit/Loss</p>
-          <p
-            className={`text-2xl font-bold ${
-              netProfit >= 0 ? "text-accent" : "text-destructive"
-            }`}
-          >
-            {netProfit >= 0 ? "+" : ""}${netProfit}
-          </p>
+              {netProfit >= 0 ? "+" : ""}${netProfit.toFixed(2)}
+            </p>
+          </div>
         </div>
       </div>
     </div>

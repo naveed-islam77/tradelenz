@@ -1,4 +1,10 @@
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
+import isoWeek from 'dayjs/plugin/isoWeek';
+
+dayjs.extend(weekOfYear);
+dayjs.extend(isoWeek);
+
 
 export const applyFilters = (query: any, filter: any) => {
   const conditions = [];
@@ -17,6 +23,18 @@ export const applyFilters = (query: any, filter: any) => {
   if (filter === "wins") conditions.push({ field: "result", type: "gt", value: 0 });
   if (filter === "losses") conditions.push({ field: "result", type: "lt", value: 0 });
   if (filter === "breakeven") conditions.push({ field: "result", type: "eq", value: 0 });
+
+
+   if (filter === 'week' || filter === 'weekly') {
+    conditions.push({
+      field: 'date_open',
+      type: 'between',
+      value: [
+        dayjs().startOf('week').toISOString(),
+        dayjs().endOf('week').toISOString(),
+      ],
+    });
+  }
 
 
   if (typeof filter === "object" && filter.field) {

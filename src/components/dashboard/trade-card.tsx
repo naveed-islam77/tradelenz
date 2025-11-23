@@ -1,23 +1,29 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { useDeleteTradeMutation } from "@/redux/services/tradesApi";
 import { Trade } from "@/types/trade-form";
-import {
-  ArrowUpRight,
-  ArrowDownLeft,
-  TrendingUp,
-  TrendingDown,
-} from "lucide-react";
+import { Loader2, Trash2, TrendingDown, TrendingUp } from "lucide-react";
 import Link from "next/link";
 
 export function TradeCard({ trade }: { trade: Trade }) {
   const result = Number(trade.result);
   const isProfit = result >= 0;
 
+  const [deleteTrade, { isLoading }] = useDeleteTradeMutation();
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 bg-black/20 flex items-center justify-center z-50">
+        <Loader2 className="animate-spin w-10 h-10 text-accent" />
+      </div>
+    );
+  }
+
   return (
     <Link href={`/trades/${trade.id}`}>
       <Card className="h-full cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-primary/50 hover:scale-[1.02]">
         <CardHeader className="pb-3 pt-4">
-          <div className="flex items-start justify-between">
+          <div className="flex items-center justify-between">
             <div className="flex-1">
               <h3
                 className={cn(
@@ -27,6 +33,15 @@ export function TradeCard({ trade }: { trade: Trade }) {
               >
                 {trade.type}
               </h3>
+            </div>
+            <div
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                deleteTrade(trade.id);
+              }}
+            >
+              <Trash2 className="w-6 h-6 text-red-600" />
             </div>
           </div>
         </CardHeader>

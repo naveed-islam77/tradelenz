@@ -1,9 +1,12 @@
 "use client";
 
+import AllTimeTrades from "@/components/all-time";
 import Analytics from "@/components/analytics";
 import DashboardTab from "@/components/dashboard";
 import History from "@/components/history";
+import Progress from "@/components/progress";
 import Sidebar from "@/components/sidebar";
+import { StrategiesPage } from "@/components/stratergies";
 import TradeForm from "@/components/trade-form";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -19,7 +22,7 @@ export default function Dashboard() {
   }, [router.query.tab]);
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex bg-background">
       {/* Sidebar */}
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
@@ -45,6 +48,9 @@ export default function Dashboard() {
             {activeTab === "dashboard" && <DashboardTab />}
 
             {activeTab === "history" && <History />}
+            {activeTab === "alltime-trades" && <AllTimeTrades />}
+            {activeTab === "strategy" && <StrategiesPage />}
+            {activeTab === "progress" && <Progress />}
 
             {activeTab === "analytics" && (
               <div>

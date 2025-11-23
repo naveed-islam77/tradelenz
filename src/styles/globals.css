@@ -114,3 +114,31 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.ql-container {
+  min-height: 300px !important;
+}
+
+.ql-editor {
+  min-height: 300px !important;
+}
+
+.react-datepicker__month-container {
+  min-height: 150px !important;
+}
+
+.react-datepicker__month-text {
+  padding: 0.5rem !important;
+}

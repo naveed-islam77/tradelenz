@@ -8,7 +8,8 @@ import { TradesGrid } from "./trades-grid";
 
 const DashboardTab = () => {
   const [filter, setFilter] = useState({});
-  const { data: trades = [] } = useGetTradesQuery({ filter });
+  const finalFilter = Object.keys(filter).length === 0 ? "week" : filter;
+  const { data: trades = [] } = useGetTradesQuery({ filter: finalFilter });
 
   const totalTrades = trades.length;
   const totalPnL = trades.reduce((sum: number, t: Trade) => sum + t.result, 0);
@@ -128,7 +129,7 @@ const DashboardTab = () => {
         ) : (
           <div className="text-center py-10 text-muted-foreground flex justify-center items-center flex-col h-[40vh]">
             <p className="text-lg font-semibold">No trades Yet</p>
-            <p className="text-sm">You have not taken any trades Yet</p>
+            <p className="text-sm">You have not taken any trade in this week</p>
           </div>
         )}
       </div>
