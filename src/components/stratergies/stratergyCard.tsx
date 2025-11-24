@@ -37,7 +37,7 @@ export function StrategyCard({ strategy, onEdit }: StrategyCardProps) {
         {/* Header with Name and Win Rate Badge */}
         <div className="flex items-center justify-between gap-2">
           <div className="flex-1">
-            <h3 className="font-semibold text-lg text-foreground truncate group-hover:text-primary transition-colors">
+            <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors">
               {strategy.name}
             </h3>
           </div>
