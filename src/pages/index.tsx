@@ -2,6 +2,7 @@
 
 import AllTimeTrades from "@/components/all-time";
 import Analytics from "@/components/analytics";
+import { CsvUploadModal } from "@/components/csv-upload-modal";
 import DashboardTab from "@/components/dashboard";
 import History from "@/components/history";
 import Progress from "@/components/progress";
@@ -33,13 +34,16 @@ export default function Dashboard() {
           <div className="flex-1 min-w-0">
             {activeTab === "add-trade" && (
               <div>
-                <div className="mb-8">
-                  <h1 className="text-3xl font-bold text-foreground mb-2">
-                    Add Trade
-                  </h1>
-                  <p className="text-muted-foreground">
-                    Log a new trade and track your performance
-                  </p>
+                <div className="flex justify-between items-center">
+                  <div className="mb-8">
+                    <h1 className="text-3xl font-bold text-foreground mb-2">
+                      Add Trade
+                    </h1>
+                    <p className="text-muted-foreground">
+                      Log a new trade and track your performance
+                    </p>
+                  </div>
+                  <CsvUploadModal />
                 </div>
                 <TradeForm />
               </div>

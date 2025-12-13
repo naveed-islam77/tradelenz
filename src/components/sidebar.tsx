@@ -41,7 +41,7 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
           height={500}
           className="w-full h-32 object-cover"
         />
-        <p className="text-xs text-muted-foreground mt-1">
+        <p className="text-xs text-muted-foreground mt-1 text-center">
           Professional Trading Journal
         </p>
       </div>
