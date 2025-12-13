@@ -8,6 +8,8 @@ import {
 } from "@/components/ui/pagination";
 
 export function PaginationComponent({ page, setPage, totalPages }: any) {
+  const pages = getPaginationRange(page, totalPages);
+
   return (
     <Pagination>
       <PaginationContent>
@@ -23,24 +25,25 @@ export function PaginationComponent({ page, setPage, totalPages }: any) {
           />
         </PaginationItem>
 
-        {/* Page Numbers */}
-        {[...Array(totalPages)].map((_, index) => {
-          const pageNum = index + 1;
-          return (
-            <PaginationItem key={pageNum}>
+        {/* Page Numbers + Dots */}
+        {pages.map((p, index) => (
+          <PaginationItem key={`${p}-${index}`}>
+            {p === "..." ? (
+              <span className="px-3 py-2 text-muted-foreground">...</span>
+            ) : (
               <PaginationLink
                 href="#"
-                isActive={page === pageNum}
+                isActive={page === p}
                 onClick={(e) => {
                   e.preventDefault();
-                  setPage(pageNum);
+                  setPage(p);
                 }}
               >
-                {pageNum}
+                {p}
               </PaginationLink>
-            </PaginationItem>
-          );
-        })}
+            )}
+          </PaginationItem>
+        ))}
 
         {/* Next */}
         <PaginationItem>
@@ -58,4 +61,32 @@ export function PaginationComponent({ page, setPage, totalPages }: any) {
       </PaginationContent>
     </Pagination>
   );
+}
+
+function getPaginationRange(current: number, total: number) {
+  const delta = 2;
+  const range: (number | "...")[] = [];
+
+  const left = Math.max(2, current - delta);
+  const right = Math.min(total - 1, current + delta);
+
+  range.push(1);
+
+  if (left > 2) {
+    range.push("...");
+  }
+
+  for (let i = left; i <= right; i++) {
+    range.push(i);
+  }
+
+  if (right < total - 1) {
+    range.push("...");
+  }
+
+  if (total > 1) {
+    range.push(total);
+  }
+
+  return range;
 }
