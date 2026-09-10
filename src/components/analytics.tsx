@@ -79,14 +79,14 @@ export default function Analytics() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-card rounded-lg p-4 shadow-sm border border-border">
           <p className="text-xs text-muted-foreground mb-1">Win Rate</p>
-          <p className="text-2xl font-bold text-black/80">
+          <p className="text-2xl font-bold text-primary">
             {winRate.toFixed(1)}%
           </p>
           <p className="text-xs text-muted-foreground mt-1">{winCount} wins</p>
         </div>
         <div className="bg-card rounded-lg p-4 shadow-sm border border-border">
           <p className="text-xs text-muted-foreground mb-1">Total Trades</p>
-          <p className="text-2xl font-bold text-foreground">{totalTrades}</p>
+          <p className="text-2xl font-bold text-primary/80">{totalTrades}</p>
           <p className="text-xs text-muted-foreground mt-1">
             {lossCount} losses
           </p>
@@ -109,7 +109,7 @@ export default function Analytics() {
       <div className="grid md:grid-cols-2 gap-6">
         {/* Win/Loss Ratio Pie Chart */}
         <div className="bg-card rounded-lg p-6 shadow-sm border border-border">
-          <h3 className="text-lg font-semibold text-foreground mb-4">
+          <h3 className="text-lg font-semibold text-primary mb-4">
             Win/Loss Ratio
           </h3>
           <ChartContainer
@@ -158,7 +158,7 @@ export default function Analytics() {
         </div>
 
         <div className="bg-card rounded-lg p-6 shadow-sm border border-border">
-          <h3 className="text-lg font-semibold text-foreground mb-4">
+          <h3 className="text-lg font-semibold text-primary mb-4">
             Profit & Loss Summary
           </h3>
           <ChartContainer

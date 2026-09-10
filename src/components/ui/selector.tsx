@@ -34,17 +34,17 @@ export default function Selector({
   return (
     <div
       className={cn(
-        "w-full bg-white rounded-2xl px-4 pt-4 pb-2",
+        "w-full px-4 pt-4 pb-2",
         parentClassName
       )}
     >
-      <p className="text-sm text-text_secondary font-medium">{label}</p>
+      <p className="text-sm text-primary font-medium">{label}</p>
 
       <Select onValueChange={onChange} value={value}>
         <SelectTrigger
           disabled={disabled}
           className={cn(
-            "w-full min-h-8 border-0 text-sm text-text_primary font-semibold p-0 placeholder:text-text_primary shadow-none",
+            "w-full min-h-8 border-0 text-sm text-primary font-semibold p-0 placeholder:text-text_primary shadow-none",
             triggerClassName
           )}
         >

@@ -1,12 +1,22 @@
 import { useGetTradesQuery } from "@/redux/services/tradesApi";
 import { Trade } from "@/types/trade-form";
-import { DollarSign, TrendingDown, TrendingUp, Zap } from "lucide-react";
+import {
+  DollarSign,
+  Moon,
+  Sun,
+  TrendingDown,
+  TrendingUp,
+  Zap,
+} from "lucide-react";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import DashboardHeader from "./dashboard-header";
 import { TradesGrid } from "./trades-grid";
+import { Button } from "../ui/button";
+import { useTheme } from "next-themes";
 
 const DashboardTab = () => {
+  const { theme, setTheme } = useTheme();
   const [filter, setFilter] = useState({});
   const finalFilter = Object.keys(filter).length === 0 ? "week" : filter;
   const { data: trades = [] } = useGetTradesQuery({ filter: finalFilter });
@@ -14,7 +24,7 @@ const DashboardTab = () => {
   const totalTrades = trades.length;
   const totalPnL = trades.reduce((sum: number, t: Trade) => sum + t.result, 0);
   const winningTrades = trades.filter(
-    (t: Trade) => Number(t.result) > 0
+    (t: Trade) => Number(t.result) > 0,
   ).length;
   const winRate =
     totalTrades > 0 ? ((winningTrades / totalTrades) * 100).toFixed(1) : 0;
@@ -22,11 +32,24 @@ const DashboardTab = () => {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Dashboard</h1>
-        <p className="text-muted-foreground">
-          View your trading performance and detailed trade history
-        </p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold text-primary mb-2">Dashboard</h1>
+          <p className="text-muted-foreground">
+            View your trading performance and detailed trade history
+          </p>
+        </div>
+
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          className="h-9 w-9 bg-primary hover:bg-primary/90 text-white dark:text-black"
+        >
+          <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
       </div>
 
       {/* Stats Grid */}
