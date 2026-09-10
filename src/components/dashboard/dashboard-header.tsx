@@ -3,7 +3,8 @@ import Selector from "@/components/ui/selector";
 import { pairs } from "@/static/trades-data";
 import { useState } from "react";
 import { DateTimePicker } from "../ui/DateTimePicker";
-import { X } from "lucide-react";
+import { Moon, Sun, X } from "lucide-react";
+import { useTheme } from "next-themes";
 import dayjs from "dayjs";
 
 export default function DashboardHeader({ onFilter }: any) {
@@ -39,7 +40,7 @@ export default function DashboardHeader({ onFilter }: any) {
     }
 
     return (
-      <div className="flex items-center gap-2 bg-gray-200 px-3 py-1 rounded-full text-sm w-max">
+      <div className="flex items-center gap-2 bg-muted px-3 py-1 rounded-full text-sm w-max">
         <span>{`${filterField}: ${label}`}</span>
         <X className="w-4 h-4 cursor-pointer" onClick={handleRemoveFilter} />
       </div>
@@ -49,13 +50,16 @@ export default function DashboardHeader({ onFilter }: any) {
   return (
     <div className="flex flex-col space-y-2 mb-6">
       <div className="flex justify-between items-center">
-        <div>
-          <h2 className="text-2xl font-bold text-foreground mb-1">
-            Weekly Trades
-          </h2>
-          <p className="text-muted-foreground">
-            Click on any trade to see detailed information
-          </p>
+        <div className="flex items-center gap-3">
+          <div>
+            <h2 className="text-2xl font-bold text-primary mb-1">
+              Weekly Trades
+            </h2>
+            <p className="text-muted-foreground">
+              Click on any trade to see detailed information
+            </p>
+          </div>
+          
         </div>
 
         <div className="space-y-2">

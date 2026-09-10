@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css";
+import "react-quill-new/dist/quill.snow.css";
 
-const ReactQuill = dynamic(() => import("react-quill"), {
+const ReactQuill = dynamic(() => import("react-quill-new"), {
   ssr: false,
 });
 
@@ -11,7 +11,7 @@ function QuillEditor({ value, setValue }: any) {
       theme="snow"
       value={value}
       onChange={setValue}
-      className="h-[300px]"
+      className="h-[300px] text-primary"
     />
   );
 }

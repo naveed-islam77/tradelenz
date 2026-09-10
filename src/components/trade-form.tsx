@@ -106,12 +106,12 @@ export default function TradeForm() {
     <form onSubmit={formik.handleSubmit} className="space-y-6">
       {/* Date & Time Section */}
       <div className="bg-card rounded-lg p-6 border border-border shadow-sm">
-        <h3 className="text-sm font-semibold text-foreground mb-4">
+        <h3 className="text-sm font-semibold text-primary mb-4">
           Date & Time
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-primary mb-2">
               Trade Open
             </label>
             <DateTimePicker
@@ -127,7 +127,7 @@ export default function TradeForm() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-primary mb-2">
               Trade Close
             </label>
             <DateTimePicker
@@ -146,7 +146,7 @@ export default function TradeForm() {
 
       {/* Pair & Type Section */}
       <div className="bg-card rounded-lg p-6 border border-border shadow-sm">
-        <h3 className="text-sm font-semibold text-foreground mb-4">
+        <h3 className="text-sm font-semibold text-primary mb-4">
           Trade Details
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -160,7 +160,7 @@ export default function TradeForm() {
           />
 
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-primary mb-2">
               Trade Type
             </label>
             <div className="flex gap-2">
@@ -187,13 +187,13 @@ export default function TradeForm() {
 
       {/* Price Section */}
       <div className="bg-card rounded-lg p-6 border border-border shadow-sm">
-        <h3 className="text-sm font-semibold text-foreground mb-4">
+        <h3 className="text-sm font-semibold text-primary mb-4">
           Price Levels
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {["entry", "exit", "take_profit", "stop_loss"].map((field) => (
             <div key={field}>
-              <label className="block text-sm font-medium text-foreground mb-2">
+              <label className="block text-sm font-medium text-primary mb-2">
                 {field.replace("_", " ").toUpperCase()}
               </label>
               <input
@@ -213,13 +213,13 @@ export default function TradeForm() {
 
       {/* Volume & Setup Section */}
       <div className="bg-card rounded-lg p-6 border border-border shadow-sm">
-        <h3 className="text-sm font-semibold text-foreground mb-4">
+        <h3 className="text-sm font-semibold text-primary mb-4">
           Volume & Strategy
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-primary mb-2">
               Lot Size
             </label>
             <input
@@ -244,7 +244,7 @@ export default function TradeForm() {
           />
 
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-primary mb-2">
               TimeFrame
             </label>
             <input
@@ -279,7 +279,7 @@ export default function TradeForm() {
           />
 
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-primary mb-2">
               Result
             </label>
             <Input
@@ -305,7 +305,7 @@ export default function TradeForm() {
 
       {/* Confirmations */}
       <div className="bg-card rounded-lg p-6 border border-border shadow-sm">
-        <label className="block text-sm font-medium text-foreground mb-2">
+        <label className="block text-sm font-medium text-primary mb-2">
           Confirmations
         </label>
 
@@ -335,7 +335,7 @@ export default function TradeForm() {
 
       {/* Notes */}
       <div className="bg-card rounded-lg p-6 border border-border shadow-sm">
-        <label className="block text-sm font-medium text-foreground mb-2">
+        <label className="block text-sm font-medium text-primary mb-2">
           Trade Notes
         </label>
         <textarea

@@ -59,7 +59,7 @@ export function DateTimePicker({
             <Button
               variant="outline"
               id="date-picker"
-              className="w-32 justify-between font-normal"
+              className="w-32 justify-between font-normal text-primary"
             >
               {date ? dayjs(date).format("DD/MM/YYYY") : "Select date"}
               <ChevronDownIcon />
@@ -83,7 +83,7 @@ export function DateTimePicker({
           step="1"
           value={time}
           onChange={handleTimeChange}
-          className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+          className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none text-primary"
         />
       </div>
     </div>

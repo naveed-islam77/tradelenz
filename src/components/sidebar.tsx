@@ -5,13 +5,17 @@ import {
   History,
   HistoryIcon,
   LayoutDashboard,
+  Moon,
   Plus,
+  Sun,
   TrendingUp,
 } from "lucide-react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { RiStockFill } from "react-icons/ri";
 import { PiStrategyFill } from "react-icons/pi";
+import { Button } from "./ui/button";
 
 interface SidebarProps {
   activeTab: string;
@@ -20,6 +24,7 @@ interface SidebarProps {
 
 export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
   const menuItems = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
     { id: "add-trade", label: "Add Trade", icon: Plus },
@@ -31,9 +36,9 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
   ];
 
   return (
-    <div className="hidden md:flex flex-col w-64 bg-sidebar border-r border-sidebar-border">
+    <div className="hidden md:flex flex-col w-64 min-h-screen bg-sidebar border-r border-sidebar-border">
       {/* Logo */}
-      <div className="p-6 border-b border-sidebar-border">
+      {/* <div className="p-6 border-b border-sidebar-border">
         <Image
           src={"/logo.png"}
           alt="logo"
@@ -44,7 +49,7 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
         <p className="text-xs text-muted-foreground mt-1 text-center">
           Professional Trading Journal
         </p>
-      </div>
+      </div> */}
 
       {/* Menu Items */}
       <nav className="flex-1 p-4 space-y-2">
@@ -61,7 +66,7 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
               }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                 isActive
-                  ? "bg-[#003250] text-white"
+                  ? "bg-accent text-white"
                   : "text-sidebar-foreground hover:bg-sidebar-accent"
               }`}
             >
@@ -71,6 +76,20 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
           );
         })}
       </nav>
+
+      {/* Theme Toggle */}
+      <div className="p-4 border-t border-sidebar-border">
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          className="w-full h-10"
+        >
+          <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </div>
     </div>
   );
 }

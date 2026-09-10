@@ -1,4 +1,5 @@
 import { store } from "@/redux/store";
+import { ThemeProvider } from "@/components/theme-provider";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Fira_Sans } from "next/font/google";
@@ -14,10 +15,12 @@ const firaSans = Fira_Sans({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={firaSans.className}>
-      <Provider store={store}>
-        <Toaster />
-        <Component {...pageProps} />
-      </Provider>
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+        <Provider store={store}>
+          <Toaster />
+          <Component {...pageProps} />
+        </Provider>
+      </ThemeProvider>
     </main>
   );
 }

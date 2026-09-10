@@ -65,41 +65,52 @@ body {
     --chart-5: 290 38% 55%;
 
     --radius: 0.5rem;
+
+    --sidebar: 0 0% 100%;
+    --sidebar-foreground: 240 5.9% 10%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-border: 240 5.9% 90%;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --background: 217.2 32.6% 10.5%;
+    --foreground: 210 40% 96.1%;
 
-    /* accent dark (oklch -> hsl) */
-    --accent: 142 60% 72%;
-    --accent-foreground: 0 0% 7%;
+    --card: 217.2 32.6% 12.5%;
+    --card-foreground: 210 40% 96.1%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --popover: 217.2 32.6% 12.5%;
+    --popover-foreground: 210 40% 96.1%;
 
-    /* destructive (already HSL) */
+    --accent: 126, 55%, 37%;
+    --accent-foreground: 0 0% 98%;
+
+    --primary: 210 40% 96.1%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 28% 16%;
+    --secondary-foreground: 210 40% 96.1%;
+
+    --muted: 217.2 28% 16%;
+    --muted-foreground: 215 20.2% 65.1%;
+
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 96.1%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 217.2 28% 18%;
+    --input: 217.2 28% 18%;
+    --ring: 212.7 26.8% 83.9%;
 
-    /* dark chart colors (already HSL) */
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    --sidebar: 217.2 32.6% 8.5%;
+    --sidebar-foreground: 210 40% 96.1%;
+    --sidebar-accent: 217.2 28% 16%;
+    --sidebar-border: 217.2 28% 18%;
   }
 }
 
@@ -141,4 +152,68 @@ input[type="number"] {
 
 .react-datepicker__month-text {
   padding: 0.5rem !important;
+}
+
+/* Dark mode overrides for react-datepicker */
+.dark .react-datepicker {
+  background-color: hsl(217.2, 32.6%, 12.5%) !important;
+  border-color: hsl(217.2, 28%, 18%) !important;
+}
+
+.dark .react-datepicker__header {
+  background-color: hsl(217.2, 28%, 16%) !important;
+  border-bottom-color: hsl(217.2, 28%, 18%) !important;
+}
+
+.dark .react-datepicker__current-month,
+.dark .react-datepicker__current-year,
+.dark .react-datepicker-time__header {
+  color: hsl(210, 40%, 96.1%) !important;
+}
+
+.dark .react-datepicker__day-name,
+.dark .react-datepicker__day,
+.dark .react-datepicker__time-name {
+  color: hsl(215, 20.2%, 65.1%) !important;
+}
+
+.dark .react-datepicker-year-header {
+  color: hsl(210, 40%, 96.1%) !important;
+}
+
+.dark .react-datepicker__month-text {
+  color: hsl(215, 20.2%, 65.1%) !important;
+  }
+
+.dark .react-datepicker__day:hover,
+.dark .react-datepicker__month-text:hover {
+  background-color: hsl(217.2, 28%, 18%) !important;
+  color: hsl(210, 40%, 96.1%) !important;
+}
+
+.dark .react-datepicker__day--selected,
+.dark .react-datepicker__day--keyboard-selected,
+.dark .react-datepicker__month-text--selected {
+  background-color: hsl(142, 60%, 72%) !important;
+  color: hsl(0, 0%, 7%) !important;
+}
+
+.dark .react-datepicker__day--today {
+  border: 1px solid hsl(210, 40%, 96.1%) !important;
+}
+
+.dark .react-datepicker__navigation {
+  border-color: hsl(215, 20.2%, 65.1%) !important;
+}
+
+.dark .react-datepicker__navigation:hover *::before {
+  border-color: hsl(210, 40%, 96.1%) !important;
+}
+
+.dark .react-datepicker__input-container input {
+  color: hsl(210, 40%, 96.1%) !important;
+}
+
+.dark .react-datepicker__input-container input::placeholder {
+  color: hsl(215, 20.2%, 65.1%) !important;
 }

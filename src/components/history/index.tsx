@@ -12,7 +12,7 @@ const History = () => {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground mb-2">
+        <h1 className="text-3xl font-bold text-primary mb-2">
           Trade History
         </h1>
         <p className="text-muted-foreground">Review all your past trades</p>

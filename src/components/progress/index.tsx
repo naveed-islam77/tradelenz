@@ -17,7 +17,7 @@ export default function Progress() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">
+          <h1 className="text-4xl font-bold text-primary mb-2">
             Trading Analytics
           </h1>
           <p className="text-slate-400">
@@ -34,7 +34,7 @@ export default function Progress() {
               className={`px-4 py-3 font-semibold text-sm transition-all duration-300 relative ${
                 activeTab === tab.id
                   ? "text-white bg-accent rounded-md"
-                  : "text-black"
+                  : "text-primary"
               }`}
             >
               {tab.label}

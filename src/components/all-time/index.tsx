@@ -38,7 +38,7 @@ const AllTimeTrades = () => {
       <div className="space-y-8">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">Dashboard</h1>
+          <h1 className="text-3xl font-bold text-primary mb-2">Dashboard</h1>
           <p className="text-muted-foreground">
             View your trading performance and detailed trade history
           </p>
@@ -138,7 +138,7 @@ const AllTimeTrades = () => {
 
         <div>
           <div className="flex justify-between items-center my-3">
-            <h1 className="text-3xl font-bold text-foreground mb-2 w-full">
+            <h1 className="text-3xl font-bold text-primary mb-2 w-full">
               All Time Trades
             </h1>
             <MonthYearPicker date={monthYear} setDate={setMonthYear} />

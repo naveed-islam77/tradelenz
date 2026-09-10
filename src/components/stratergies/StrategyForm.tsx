@@ -61,24 +61,24 @@ export default function StrategyForm({ tradeId }: { tradeId?: string }) {
       className="space-y-6 max-w-6xl mx-auto my-10"
     >
       <div onClick={() => router.back()}>
-        <Button variant="outline" className="mb-2" type="button">
+        <Button variant="outline" className="mb-2 bg-card text-primary" type="button">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Dashboard
         </Button>
       </div>
-      <h1 className="text-3xl font-bold text-foreground">Add New Stratergy</h1>
+      <h1 className="text-3xl font-bold text-primary">Add New Stratergy</h1>
       {/* Date & Time Section */}
       <div className="bg-card rounded-lg p-6 border border-border shadow-sm">
         <div className="grid grid-cols-1 gap-4">
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-primary mb-2">
               Name
             </label>
             <Input
               name="name"
               value={formik.values.name}
               onChange={formik.handleChange}
-              className="w-full bg-input"
+              className="w-full bg-input text-primary"
               placeholder="Enter Stratergy Name"
             />
           </div>
@@ -87,7 +87,7 @@ export default function StrategyForm({ tradeId }: { tradeId?: string }) {
 
       {/* Notes */}
       <div className="bg-card rounded-lg p-6 border border-border shadow-sm min-h-[420px]">
-        <label className="block text-sm font-medium text-foreground mb-2">
+        <label className="block text-sm font-medium text-primary mb-2">
           Strategy Rules
         </label>
         <QuillEditor

@@ -98,7 +98,7 @@ export function CsvUploadModal() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
-        <Button variant="outline">Upload CSV</Button>
+        <Button variant="outline" className="text-primary">Upload CSV</Button>
       </DialogTrigger>
       <DialogContent className="max-w-md bg-white">
         <DialogHeader>
