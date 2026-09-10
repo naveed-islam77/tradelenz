@@ -10,7 +10,7 @@ export default function MonthYearPicker({ date, setDate }: any) {
       dateFormat="MM/yyyy"
       showMonthYearPicker
       placeholderText="Select month and year"
-      className="border p-2 rounded-md"
+      className="border border-border p-2 rounded-md bg-input text-foreground"
     />
   );
 }

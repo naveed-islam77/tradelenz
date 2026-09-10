@@ -31,7 +31,8 @@ export function PaginationComponent({ page, setPage, totalPages }: any) {
             {p === "..." ? (
               <span className="px-3 py-2 text-muted-foreground">...</span>
             ) : (
-              <PaginationLink
+              <PaginationLink 
+              className="text-primary bg-card"
                 href="#"
                 isActive={page === p}
                 onClick={(e) => {

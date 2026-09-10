@@ -43,11 +43,11 @@ export default function SelectorWithLabelValue({
   return (
     <div
       className={cn(
-        "w-full bg-white rounded-2xl px-4 pt-4 pb-2",
+        "w-full bg-background rounded-2xl px-4 pt-4 pb-2",
         parentClassName
       )}
     >
-      <p className="text-sm text-text_secondary font-medium">{label}</p>
+      <p className="text-sm text-card-foreground font-medium">{label}</p>
 
       <Select onValueChange={onChange} value={value}>
         <SelectTrigger

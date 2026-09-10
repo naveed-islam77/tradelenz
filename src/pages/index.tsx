@@ -36,7 +36,7 @@ export default function Dashboard() {
               <div>
                 <div className="flex justify-between items-center">
                   <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-foreground mb-2">
+                    <h1 className="text-3xl font-bold text-primary mb-2">
                       Add Trade
                     </h1>
                     <p className="text-muted-foreground">
@@ -59,7 +59,7 @@ export default function Dashboard() {
             {activeTab === "analytics" && (
               <div>
                 <div className="mb-8">
-                  <h1 className="text-3xl font-bold text-foreground mb-2">
+                  <h1 className="text-3xl font-bold text-primary mb-2">
                     Analytics
                   </h1>
                   <p className="text-muted-foreground">
